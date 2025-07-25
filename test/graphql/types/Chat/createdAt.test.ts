@@ -47,6 +47,7 @@ async function getAdminToken() {
 async function createTestUser(
 	adminAuthToken: string,
 	role: "regular" | "administrator" = "regular",
+	isEmailAddressVerified = false,
 ) {
 	const userResult = await mercuriusClient.mutate(Mutation_createUser, {
 		headers: {
@@ -58,7 +59,7 @@ async function createTestUser(
 				name: faker.person.fullName(),
 				password: "password123",
 				role: role,
-				isEmailAddressVerified: false,
+				isEmailAddressVerified: isEmailAddressVerified,
 			},
 		},
 	});
